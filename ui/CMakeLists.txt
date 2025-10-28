@@ -25,11 +25,21 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(raygui)
 
-# UI/Client executable
-add_executable(chat-client client.c)
+# UI/Client executable - now modular!
+add_executable(chat-client
+    client.c
+    network.c
+    ui_drawing.c
+    utils.c
+    ../common/protocol.h
+    ../common/protocol.c
+)
 
 # Include raygui headers (it's header-only, no linking needed)
-target_include_directories(chat-client PRIVATE ${raygui_SOURCE_DIR}/src)
+target_include_directories(chat-client PRIVATE
+    ${raygui_SOURCE_DIR}/src
+    ${CMAKE_CURRENT_SOURCE_DIR}
+)
 
 # Link only Raylib library (raygui is header-only)
 target_link_libraries(chat-client

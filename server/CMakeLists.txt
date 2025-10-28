@@ -1,7 +1,13 @@
 cmake_minimum_required(VERSION 3.5)
 project(chat-server C)
 # Server executable
-add_executable(chat-server server.c)
+add_executable(chat-server
+    server.c
+    server.h
+    main.c
+    ../common/protocol.h
+    ../common/protocol.c
+)
 
 # Link necessary libraries (if needed)
 # target_link_libraries(chat-server pthread)
